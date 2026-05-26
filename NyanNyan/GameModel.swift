@@ -17,12 +17,16 @@ class GameModel {
     private(set) var score = 0.0
     private(set) var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
-    func playerGravity() {
-        playerPosition.y += ModelConstants.gravityChangeAmt
+    func playerGravity(windowSize: CGSize) {
+        let maxY = windowSize.height - PlayerConstants.playerSize.height / 2
+        playerPosition.y = min(
+            playerPosition.y + ModelConstants.gravityChangeAmt, maxY)
     }
-    
-    func movePlayerOnTap() {
-        playerPosition.y -= ModelConstants.playerMoveAmt
+
+    func movePlayerOnTap(windowSize: CGSize) {
+        let minY = PlayerConstants.playerSize.height / 2
+        playerPosition.y = max(
+            playerPosition.y - ModelConstants.playerMoveAmt, minY)
     }
     
     func moveObstacle() {

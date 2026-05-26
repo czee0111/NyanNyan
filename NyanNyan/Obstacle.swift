@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ObstacleContants {
-    static let obstacleWidth = 20.0
-    static let obstacleHeight = 100.0
+    static let obstacleWidth = 40.0
+    static let obstacleHeight = 200.0
 }
 
 struct Obstacle: View {
