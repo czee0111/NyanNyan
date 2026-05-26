@@ -12,7 +12,7 @@ struct ContentView: View {
                     .position(model.playerPosition)
                     .onReceive(model.timer) {_ in
                         withAnimation {
-                            model.playerGravity()
+                            model.playerGravity(windowSize: geo.size)
                         }
                     }
 
@@ -26,6 +26,20 @@ struct ContentView: View {
                         } else {
                             // pass in window size;
                             // no animation on reset
+                            model.resetObstacle(windowSize: geo.size)
+                        }
+                    }
+                Obstacle2()
+                    .position(
+                        x: model.obstaclePosition.x + 300,
+                        y: model.obstaclePosition.y + 150
+                    )
+                    .onReceive(model.timer) { _ in
+                        if model.obstaclePosition.x > 0 {
+                            withAnimation {
+                                model.moveObstacle()
+                            }
+                        } else {
                             model.resetObstacle(windowSize: geo.size)
                         }
                     }
@@ -50,7 +64,7 @@ struct ContentView: View {
                     .onEnded {
                         if !model.gameOver {
                             withAnimation{
-                                model.movePlayerOnTap()
+                                model.movePlayerOnTap(windowSize: geo.size)
                             }
                         }
                     })
