@@ -7,22 +7,23 @@ import WebKit
 
 struct GIFView: UIViewRepresentable {
     private let url: URL
-    
-    func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
-        webView.scrollView.isScrollEnabled = false
-        webView.allowsLinkPreview = false
-        
-        if let path = Bundle.main.path(forResource: "\(name)", ofType: "gif") {
-            let url = URL(fileURLWithPath: path)
-            let data = try? Data(contentsOf: url)
-            
-            webView.load(data!, mimeType: "image/gif", characterEncodingName: "UTF-8", baseURL: url.deletingLastPathComponent())
+
+        init(url: URL) {
+            self.url = url
         }
-        return webView
+
+        func makeUIView(context: Context) -> WKWebView {
+            let webview = WKWebView()
+
+            webview.allowsLinkPreview = false
+            webview.allowsBackForwardNavigationGestures = false
+
+            webview.load(URLRequest(url: url))
+
+            return webview
+        }
+
+        func updateUIView(_ uiView: WKWebView, context: Context) {
+            uiView.reload()
+        }
     }
-        
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.reload()
-    }
-}
