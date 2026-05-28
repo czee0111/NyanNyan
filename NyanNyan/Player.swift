@@ -1,8 +1,6 @@
 import SwiftUI
 
-// !! think abt. replacing this with gif
-
-//struct PlayerConstants {
+struct PlayerConstants {
 //    static let cellSize: CGFloat = 5
 //    
 //    static let cells: [[Color]] = [[.clear, .clear, .clear, .blue, .blue, .blue, .clear, .clear, .clear],
@@ -13,19 +11,19 @@ import SwiftUI
 //                                   [.clear, .clear, .blue, .blue, .blue, .blue, .blue, .clear, .clear],
 //                                   [.clear, .blue, .clear, .blue, .clear, .blue, .clear, .blue, .clear],
 //                                   [.yellow, .blue, .clear, .yellow, .clear, .yellow, .clear, .blue, .yellow]]
-//    
-//    // computed property
-//    static var playerSize: CGSize {
-//        let w = CGFloat(cells.count) * cellSize
-//        let h = CGFloat(cells[0].count) * cellSize
-//        return CGSize(width: w, height: h)
-//    }
-//}
+    
+    // computed property
+    static var playerSize: CGSize {
+        let w = CGFloat(50)
+        let h = CGFloat(50)
+        return CGSize(width: w, height: h)
+    }
+}
 
 struct Player: View {
     var body: some View {
-        GIFView("nyancat")
-            .frame(width: 100, height: 100)
+        GIFView(name: "nyancat")
+            .frame(width: PlayerConstants.playerSize.width, height: PlayerConstants.playerSize.height)
 //        let rows = PlayerConstants.cells.count
 //        let cols = PlayerConstants.cells[0].count
 //        VStack (spacing: 0) {
