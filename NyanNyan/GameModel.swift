@@ -9,6 +9,10 @@ struct ModelConstants {
     static let obstacleMoveAmt = 20.0
 }
 
+struct PlayerConstants {
+    static let playerSize = CGSize(width: 20, height: 20)
+}
+
 @Observable
 class GameModel {
     private(set) var playerPosition = ModelConstants.playerStart
