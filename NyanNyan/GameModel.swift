@@ -4,6 +4,7 @@ import Combine
 struct ModelConstants {
     static let playerStart = CGPoint(x: 100, y: 0)
     static let obstacleStart = CGPoint(x: 0, y: 0)
+    static let obstacle2Start = CGPoint(x: -50, y: 20)
     static let gravityChangeAmt = 20.0
     static let playerMoveAmt = 100.0
     static let obstacleMoveAmt = 20.0
@@ -17,6 +18,7 @@ struct PlayerConstants {
 class GameModel {
     private(set) var playerPosition = ModelConstants.playerStart
     private(set) var obstaclePosition = ModelConstants.obstacleStart
+    private(set) var obstacle2Position = ModelConstants.obstacleStart
     private(set) var gameOver = false
     private(set) var score = 0.0
     private(set) var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -34,6 +36,11 @@ class GameModel {
     }
     
     func moveObstacle() {
+        obstaclePosition.x -= ModelConstants.obstacleMoveAmt
+        detectCollision();
+        score += 0.1
+    }
+    func moveObstacle2() {
         obstaclePosition.x -= ModelConstants.obstacleMoveAmt
         detectCollision();
         score += 0.1

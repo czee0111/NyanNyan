@@ -30,14 +30,11 @@ struct ContentView: View {
                         }
                     }
                 Obstacle2()
-                    .position(
-                        x: model.obstaclePosition.x + 300,
-                        y: model.obstaclePosition.y + 150
-                    )
+                    .position(model.obstacle2Position)
                     .onReceive(model.timer) { _ in
                         if model.obstaclePosition.x > 0 {
                             withAnimation {
-                                model.moveObstacle()
+                                model.moveObstacle2()
                             }
                         } else {
                             model.resetObstacle(windowSize: geo.size)
