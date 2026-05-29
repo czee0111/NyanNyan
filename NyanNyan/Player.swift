@@ -24,8 +24,8 @@ import SwiftUI
 
 struct Player: View {
     var body: some View {
-//        GIFView("nyancat")
-//            .frame(width: 100, height: 100)
+        GIFView("nyancat")
+            .frame(width: 100, height: 100)
 //        let rows = PlayerConstants.cells.count
 //        let cols = PlayerConstants.cells[0].count
 //        VStack (spacing: 0) {
