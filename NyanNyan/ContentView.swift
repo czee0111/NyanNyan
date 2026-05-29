@@ -37,7 +37,7 @@ struct ContentView: View {
                                 model.moveObstacle2()
                             }
                         } else {
-                            model.resetObstacle(windowSize: geo.size)
+                            model.resetObstacle2(windowSize: geo.size)
                         }
                     }
                 

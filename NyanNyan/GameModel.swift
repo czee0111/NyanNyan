@@ -4,10 +4,11 @@ import Combine
 struct ModelConstants {
     static let playerStart = CGPoint(x: 100, y: 0)
     static let obstacleStart = CGPoint(x: 0, y: 0)
-    static let obstacle2Start = CGPoint(x: -50, y: 20)
+    static let obstacle2Start = CGPoint(x: -30, y: 400)
     static let gravityChangeAmt = 20.0
     static let playerMoveAmt = 100.0
-    static let obstacleMoveAmt = 20.0
+    static let obstacleMoveAmt = 30.0
+    static let obstacle2MoveAmt = 50.0
 }
 
 struct PlayerConstants {
@@ -18,7 +19,7 @@ struct PlayerConstants {
 class GameModel {
     private(set) var playerPosition = ModelConstants.playerStart
     private(set) var obstaclePosition = ModelConstants.obstacleStart
-    private(set) var obstacle2Position = ModelConstants.obstacleStart
+    private(set) var obstacle2Position = ModelConstants.obstacle2Start
     private(set) var gameOver = false
     private(set) var score = 0.0
     private(set) var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -41,7 +42,7 @@ class GameModel {
         score += 0.1
     }
     func moveObstacle2() {
-        obstaclePosition.x -= ModelConstants.obstacleMoveAmt
+        obstacle2Position.x -= ModelConstants.obstacle2MoveAmt
         detectCollision();
         score += 0.1
     }
@@ -55,6 +56,19 @@ class GameModel {
         let yMax = windowSize.height - yMin
         let resetY = CGFloat.random(in: yMin...yMax)
         obstaclePosition.y = resetY
+    }
+    func resetObstacle2(windowSize: CGSize) {
+        let resetX = windowSize.width + 80.0
+        obstacle2Position.x = resetX
+
+        let attachedToTop = Bool.random()
+
+        if attachedToTop {
+            obstacle2Position.y = ObstacleContants.obstacleHeight / 2
+        } else {
+            obstacle2Position.y =
+                windowSize.height - ObstacleContants.obstacleHeight / 2
+        }
     }
     
     func reset() {
