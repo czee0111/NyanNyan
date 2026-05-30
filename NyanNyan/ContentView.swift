@@ -8,6 +8,11 @@ struct ContentView: View {
         // since ZStack stretches to fill screen, geo.size will be width and height of screen
         GeometryReader { geo in
             ZStack {
+                Image("spacebg")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                    .frame(width: geo.size.width, height: geo.size.height)
                 Player()
                     .position(model.playerPosition)
                     .onReceive(model.timer) {_ in
