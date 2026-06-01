@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3F498AEA2FCDBF7A00EA5EE1 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = 3F498AE92FCDBF7A00EA5EE1 /* Gifu */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		3FA26FCE2FBF3EC400914552 /* NyanNyan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NyanNyan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F498AEA2FCDBF7A00EA5EE1 /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = NyanNyan;
 			packageProductDependencies = (
+				3F498AE92FCDBF7A00EA5EE1 /* Gifu */,
 			);
 			productName = NyanNyan;
 			productReference = 3FA26FCE2FBF3EC400914552 /* NyanNyan.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 3FA26FC52FBF3EC400914552;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3F498AE82FCDBF7A00EA5EE1 /* XCRemoteSwiftPackageReference "Gifu" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3FA26FCF2FBF3EC400914552 /* Products */;
 			projectDirPath = "";
@@ -328,6 +337,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F498AE82FCDBF7A00EA5EE1 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F498AE92FCDBF7A00EA5EE1 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F498AE82FCDBF7A00EA5EE1 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3FA26FC62FBF3EC400914552 /* Project object */;
 }
