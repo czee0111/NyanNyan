@@ -37,7 +37,7 @@ struct ContentView: View {
                 Obstacle2()
                     .position(model.obstacle2Position)
                     .onReceive(model.timer) { _ in
-                        if model.obstaclePosition.x > 0 {
+                        if model.obstacle2Position.x > 0 {
                             withAnimation {
                                 model.moveObstacle2()
                             }

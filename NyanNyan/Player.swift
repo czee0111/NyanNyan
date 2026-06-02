@@ -3,18 +3,20 @@ import Gifu
 
 struct PlayerConstants {
     static var playerSize: CGSize {
-        let w = CGFloat(50)
-        let h = CGFloat(50)
+        return CGSize(width: 300, height: 125)
     }
+    
+    // WORK ON HITBOXES
+    static var playerHitbox: CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+    static var playerScale = 2.5
 }
 
 struct Player: View {
-    let playerSize = PlayerConstants()
-    
-    // FIX & CHECK
     var body: some View {
         GIFImage(gifName: "nyan-cat")
-            .frame(width: PlayerConstants.playerSize.w, height: PlayerConstants.playerSize.h)
+            .frame(width: PlayerConstants.playerSize.width, height: PlayerConstants.playerSize.height)
     }
 }
 
