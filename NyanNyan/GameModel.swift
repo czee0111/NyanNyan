@@ -82,21 +82,22 @@ class GameModel {
         score = 0
     }
     
+    // WORK ON HITBOXES, not sure if computations are correct. 
     private func detectCollision() {
-        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / PlayerConstants.playerScale
-        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / PlayerConstants.playerScale
-        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / PlayerConstants.playerScale
-        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / PlayerConstants.playerScale
+        let hitboxRightEdgeX = playerPosition.x + (PlayerConstants.playerHitbox.width + PlayerConstants.hitboxOffset) / 2
+        let hitboxLeftEdgeX = playerPosition.x - (PlayerConstants.playerHitbox.width + PlayerConstants.hitboxOffset) / 2
+        let hitboxTopY = playerPosition.y - PlayerConstants.playerHitbox.height / 2
+        let hitboxBottomY = playerPosition.y + PlayerConstants.playerHitbox.height / 2
         
         let obstacleRightEdgeX = obstaclePosition.x + ObstacleContants.obstacleWidth / PlayerConstants.playerScale
         let obstacleLeftEdgeX = obstaclePosition.x - ObstacleContants.obstacleWidth / PlayerConstants.playerScale
         let obstacleTopY = obstaclePosition.y - ObstacleContants.obstacleHeight  / PlayerConstants.playerScale
         let obstacleBottomY = obstaclePosition.y + ObstacleContants.obstacleHeight / PlayerConstants.playerScale
         
-        let frontEdgeCheck: Bool = playerRightEdgeX >= obstacleLeftEdgeX
-        let backEdgeCheck: Bool = playerLeftEdgeX <= obstacleRightEdgeX
-        let topCheck: Bool = playerTopY >= obstacleTopY && playerTopY <= obstacleBottomY
-        let bottomCheck: Bool = playerBottomY <= obstacleBottomY && playerBottomY >= obstacleTopY
+        let frontEdgeCheck: Bool = hitboxRightEdgeX >= obstacleLeftEdgeX
+        let backEdgeCheck: Bool = hitboxLeftEdgeX <= obstacleRightEdgeX
+        let topCheck: Bool = hitboxTopY >= obstacleTopY && hitboxTopY <= obstacleBottomY
+        let bottomCheck: Bool = hitboxBottomY <= obstacleBottomY && hitboxBottomY >= obstacleTopY
         
         if frontEdgeCheck && backEdgeCheck && (topCheck || bottomCheck) {
             stopTimer()
