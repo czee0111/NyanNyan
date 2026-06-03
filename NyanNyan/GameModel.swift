@@ -23,13 +23,13 @@ class GameModel {
     private(set) var obstacle2AttachedToTop = true
     
     func playerGravity(windowSize: CGSize) {
-        let maxY = windowSize.height - PlayerConstants.playerSize.height / 2
+        let maxY = windowSize.height - PlayerConstants.playerSize.height / PlayerConstants.playerScale
         playerPosition.y = min(
             playerPosition.y + ModelConstants.gravityChangeAmt, maxY)
     }
 
     func movePlayerOnTap(windowSize: CGSize) {
-        let minY = PlayerConstants.playerSize.height / 2
+        let minY = PlayerConstants.playerSize.height / PlayerConstants.playerScale
         playerPosition.y = max(
             playerPosition.y - ModelConstants.playerMoveAmt, minY)
     }
@@ -82,15 +82,15 @@ class GameModel {
     }
     
     private func detectCollision() {
-        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / 2
-        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / 2
-        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / 2
-        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / 2
+        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / PlayerConstants.playerScale
+        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / PlayerConstants.playerScale
+        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / PlayerConstants.playerScale
+        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / PlayerConstants.playerScale
         
-        let obstacleRightEdgeX = obstaclePosition.x + ObstacleContants.obstacleWidth / 2
-        let obstacleLeftEdgeX = obstaclePosition.x - ObstacleContants.obstacleWidth / 2
-        let obstacleTopY = obstaclePosition.y - ObstacleContants.obstacleHeight  / 2
-        let obstacleBottomY = obstaclePosition.y + ObstacleContants.obstacleHeight / 2
+        let obstacleRightEdgeX = obstaclePosition.x + ObstacleContants.obstacleWidth / PlayerConstants.playerScale
+        let obstacleLeftEdgeX = obstaclePosition.x - ObstacleContants.obstacleWidth / PlayerConstants.playerScale
+        let obstacleTopY = obstaclePosition.y - ObstacleContants.obstacleHeight  / PlayerConstants.playerScale
+        let obstacleBottomY = obstaclePosition.y + ObstacleContants.obstacleHeight / PlayerConstants.playerScale
         
         let frontEdgeCheck: Bool = playerRightEdgeX >= obstacleLeftEdgeX
         let backEdgeCheck: Bool = playerLeftEdgeX <= obstacleRightEdgeX
@@ -103,10 +103,10 @@ class GameModel {
         }
     }
     private func detectCollision2() {
-        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / 2
-        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / 2
-        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / 2
-        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / 2
+        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / PlayerConstants.playerScale
+        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / PlayerConstants.playerScale
+        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / PlayerConstants.playerScale
+        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / PlayerConstants.playerScale
         
         let obstacle2RightEdgeX = obstacle2Position.x + Obstacle2Contants.obstacle2Width / 2
         let obstacle2LeftEdgeX = obstacle2Position.x - Obstacle2Contants.obstacle2Width / 2
