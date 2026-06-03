@@ -38,12 +38,10 @@ class GameModel {
     func moveObstacle() {
         obstaclePosition.x -= ModelConstants.obstacleMoveAmt
         detectCollision();
-        detectCollision2();
         score += 0.1
     }
     func moveObstacle2() {
         obstacle2Position.x -= ModelConstants.obstacle2MoveAmt
-        detectCollision();
         detectCollision2();
         score += 0.1
     }
@@ -134,3 +132,4 @@ class GameModel {
         timer.upstream.connect().cancel()
     }
 }
+
