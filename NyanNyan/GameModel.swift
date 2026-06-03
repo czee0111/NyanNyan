@@ -37,12 +37,10 @@ class GameModel {
     func moveObstacle() {
         obstaclePosition.x -= ModelConstants.obstacleMoveAmt
         detectCollision();
-        detectCollision2();
         score += 0.1
     }
     func moveObstacle2() {
         obstacle2Position.x -= ModelConstants.obstacle2MoveAmt
-        detectCollision();
         detectCollision2();
         score += 0.1
     }
@@ -103,22 +101,22 @@ class GameModel {
         }
     }
     private func detectCollision2() {
-        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / PlayerConstants.playerScale
-        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / PlayerConstants.playerScale
-        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / PlayerConstants.playerScale
-        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / PlayerConstants.playerScale
-        
+        let playerRightEdgeX2 = playerPosition.x + PlayerConstants.playerSize.width / PlayerConstants.playerScale
+        let playerLeftEdgeX2 = playerPosition.x - PlayerConstants.playerSize.width / PlayerConstants.playerScale
+        let playerTopY2 = playerPosition.y - PlayerConstants.playerSize.height / PlayerConstants.playerScale
+        let playerBottomY2 = playerPosition.y + PlayerConstants.playerSize.height / PlayerConstants.playerScale
+
         let obstacle2RightEdgeX = obstacle2Position.x + Obstacle2Contants.obstacle2Width / 2
         let obstacle2LeftEdgeX = obstacle2Position.x - Obstacle2Contants.obstacle2Width / 2
-        let obstacle2TopY = obstacle2Position.y + obstacle2Height / 2
+        let obstacle2TopY = obstacle2Position.y - obstacle2Height / 2
         let obstacle2BottomY = obstacle2Position.y + obstacle2Height / 2
-        
-        let frontEdgeCheck: Bool = playerRightEdgeX >= obstacle2LeftEdgeX
-        let backEdgeCheck: Bool = playerLeftEdgeX <= obstacle2RightEdgeX
-        let topCheck: Bool = playerTopY >= obstacle2TopY && playerTopY <= obstacle2BottomY
-        let bottomCheck: Bool = playerBottomY <= obstacle2BottomY && playerBottomY >= obstacle2TopY
-        
-        if frontEdgeCheck && backEdgeCheck && (topCheck || bottomCheck) {
+
+        let frontEdgeCheck2: Bool = playerRightEdgeX2 >= obstacle2LeftEdgeX
+        let backEdgeCheck2: Bool = playerLeftEdgeX2 <= obstacle2RightEdgeX
+        let topCheck2: Bool = playerTopY2 <= obstacle2BottomY && playerTopY2 >= obstacle2TopY
+        let bottomCheck2: Bool = playerBottomY2 >= obstacle2TopY && playerBottomY2 <= obstacle2BottomY
+
+        if frontEdgeCheck2 && backEdgeCheck2 && (topCheck2 || bottomCheck2) {
             stopTimer()
             gameOver = true
         }
@@ -128,3 +126,4 @@ class GameModel {
         timer.upstream.connect().cancel()
     }
 }
+
