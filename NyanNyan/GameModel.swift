@@ -19,6 +19,7 @@ class GameModel {
     private(set) var gameOver = false
     private(set) var score = 0.0
     private(set) var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
     private(set) var obstacle2Height = Obstacle2Contants.minHeight
     private(set) var obstacle2AttachedToTop = true
     
@@ -103,22 +104,26 @@ class GameModel {
         }
     }
     private func detectCollision2() {
-        let playerRightEdgeX = playerPosition.x + PlayerConstants.playerSize.width / PlayerConstants.playerScale
-        let playerLeftEdgeX = playerPosition.x - PlayerConstants.playerSize.width / PlayerConstants.playerScale
-        let playerTopY = playerPosition.y - PlayerConstants.playerSize.height / PlayerConstants.playerScale
-        let playerBottomY = playerPosition.y + PlayerConstants.playerSize.height / PlayerConstants.playerScale
+        let playerHalfWidth = (PlayerConstants.playerSize.width / PlayerConstants.playerScale) / 2
+        let playerHalfHeight = (PlayerConstants.playerSize.height / PlayerConstants.playerScale) / 2
         
-        let obstacle2RightEdgeX = obstacle2Position.x + Obstacle2Contants.obstacle2Width / 2
-        let obstacle2LeftEdgeX = obstacle2Position.x - Obstacle2Contants.obstacle2Width / 2
-        let obstacle2TopY = obstacle2Position.y + obstacle2Height / 2
-        let obstacle2BottomY = obstacle2Position.y + obstacle2Height / 2
+        let playerRightEdgeX = playerPosition.x + playerHalfWidth
+        let playerLeftEdgeX = playerPosition.x - playerHalfWidth
+        let playerTopY = playerPosition.y - playerHalfHeight
+        let playerBottomY = playerPosition.y + playerHalfHeight
         
-        let frontEdgeCheck: Bool = playerRightEdgeX >= obstacle2LeftEdgeX
-        let backEdgeCheck: Bool = playerLeftEdgeX <= obstacle2RightEdgeX
-        let topCheck: Bool = playerTopY >= obstacle2TopY && playerTopY <= obstacle2BottomY
-        let bottomCheck: Bool = playerBottomY <= obstacle2BottomY && playerBottomY >= obstacle2TopY
+        let obstacle2HalfWidth = Obstacle2Contants.obstacle2Width / 2
         
-        if frontEdgeCheck && backEdgeCheck && (topCheck || bottomCheck) {
+        let obstacle2RightEdgeX = obstacle2Position.x + obstacle2HalfWidth
+        let obstacle2LeftEdgeX = obstacle2Position.x - obstacle2HalfWidth
+        let obstacle2TopY = obstacle2Position.y
+        let obstacle2BottomY = obstacle2Position.y + obstacle2Height
+        
+        let frontEdgeCheck = playerRightEdgeX >= obstacle2LeftEdgeX
+        let backEdgeCheck = playerLeftEdgeX <= obstacle2RightEdgeX
+        let topCheck = playerBottomY >= obstacle2TopY && playerTopY <= obstacle2BottomY
+        
+        if frontEdgeCheck && backEdgeCheck && topCheck {
             stopTimer()
             gameOver = true
         }
