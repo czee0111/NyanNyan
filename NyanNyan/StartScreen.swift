@@ -5,13 +5,8 @@ struct StartScreen: View {
     
     var body: some View {
         ZStack {
-            Image("spacebg")
-                .resizable()
+            GIFImage(gifName: "spacebg")
                 .scaledToFill()
-                .ignoresSafeArea()
-            
-            Color.black
-                .opacity(0.6)
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {

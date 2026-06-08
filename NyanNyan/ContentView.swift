@@ -14,11 +14,9 @@ struct ContentView: View {
             } else {
                 GeometryReader { geo in
                     ZStack {
-                        Image("spacebg")
-                            .resizable()
+                        GIFImage(gifName: "spacebg")
                             .scaledToFill()
                             .ignoresSafeArea()
-                            .frame(width: geo.size.width, height: geo.size.height)
                         Player()
                             .position(model.playerPosition)
                             .onReceive(model.timer) {_ in
