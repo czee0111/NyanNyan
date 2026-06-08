@@ -8,7 +8,7 @@ struct ModelConstants {
     static let gravityChangeAmt = 20.0
     static let playerMoveAmt = 100.0
     static let obstacleMoveAmt = 20.0
-    static let obstacle2MoveAmt = 50.0
+    static let obstacle2MoveAmt = 30.0
 }
 
 @Observable
@@ -65,10 +65,10 @@ class GameModel {
         let attachedToTop = Bool.random()
 
         if attachedToTop {
-            obstacle2Position.y = ObstacleContants.obstacleHeight / 2
+            obstacle2Position.y = obstacle2Height / 2
         } else {
             obstacle2Position.y =
-                windowSize.height - ObstacleContants.obstacleHeight / 2
+                windowSize.height - obstacle2Height / 2
         }
     }
     
