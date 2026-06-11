@@ -76,6 +76,7 @@ class GameModel {
         timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
         playerPosition = CGPoint(x: 100, y: 100) // player to starting position
         obstaclePosition.x = 1000 // obstacle to starting position
+        obstacle2Position.x = 1000
         gameOver = false
         score = 0
     }

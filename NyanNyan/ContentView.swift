@@ -60,6 +60,7 @@ struct ContentView: View {
                         if model.gameOver {
                             Button("Play Again") {
                                 model.reset()
+                                if gameStarted == false { gameStarted = true }
                             }
                             .buttonStyle(.borderedProminent)
                         }
