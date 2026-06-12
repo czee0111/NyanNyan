@@ -42,7 +42,7 @@ class GameModel {
     }
     func moveObstacle2() {
         obstacle2Position.x -= ModelConstants.obstacle2MoveAmt
-        detectCollision2();
+        detectCollision2(); 
         score += 0.1
     }
     
@@ -83,22 +83,44 @@ class GameModel {
     
     // WORK ON HITBOXES, not sure if computations are correct. 
     private func detectCollision() {
-        let hitboxRightEdgeX = playerPosition.x + (PlayerConstants.playerHitbox.width + PlayerConstants.hitboxOffset) / 2
-        let hitboxLeftEdgeX = playerPosition.x - (PlayerConstants.playerHitbox.width + PlayerConstants.hitboxOffset) / 2
-        let hitboxTopY = playerPosition.y - PlayerConstants.playerHitbox.height / 2
-        let hitboxBottomY = playerPosition.y + PlayerConstants.playerHitbox.height / 2
+//        let hitboxRightEdgeX = playerPosition.x + (PlayerConstants.playerHitbox.width + PlayerConstants.hitboxOffset) / 2
+//        let hitboxLeftEdgeX = playerPosition.x - (PlayerConstants.playerHitbox.width + PlayerConstants.hitboxOffset) / 2
+//        let hitboxTopY = playerPosition.y - PlayerConstants.playerHitbox.height / 2
+//        let hitboxBottomY = playerPosition.y + PlayerConstants.playerHitbox.height / 2
+//        
+//        let obstacleRightEdgeX = obstaclePosition.x + ObstacleContants.obstacleWidth / PlayerConstants.playerScale
+//        let obstacleLeftEdgeX = obstaclePosition.x - ObstacleContants.obstacleWidth / PlayerConstants.playerScale
+//        let obstacleTopY = obstaclePosition.y - ObstacleContants.obstacleHeight  / PlayerConstants.playerScale
+//        let obstacleBottomY = obstaclePosition.y + ObstacleContants.obstacleHeight / PlayerConstants.playerScale
+//        
+//        let frontEdgeCheck: Bool = hitboxRightEdgeX >= obstacleLeftEdgeX
+//        let backEdgeCheck: Bool = hitboxLeftEdgeX <= obstacleRightEdgeX
+//        let topCheck: Bool = hitboxTopY >= obstacleTopY && hitboxTopY <= obstacleBottomY
+//        let bottomCheck: Bool = hitboxBottomY <= obstacleBottomY && hitboxBottomY >= obstacleTopY
+//        
+//        if frontEdgeCheck && backEdgeCheck && (topCheck || bottomCheck) {
+//            stopTimer()
+//            gameOver = true
+        let playerHalfWidth = (PlayerConstants.playerSize.width / PlayerConstants.playerScale) / 2
+        let playerHalfHeight = (PlayerConstants.playerSize.height / PlayerConstants.playerScale) / 2
         
-        let obstacleRightEdgeX = obstaclePosition.x + ObstacleContants.obstacleWidth / PlayerConstants.playerScale
-        let obstacleLeftEdgeX = obstaclePosition.x - ObstacleContants.obstacleWidth / PlayerConstants.playerScale
-        let obstacleTopY = obstaclePosition.y - ObstacleContants.obstacleHeight  / PlayerConstants.playerScale
-        let obstacleBottomY = obstaclePosition.y + ObstacleContants.obstacleHeight / PlayerConstants.playerScale
+        let playerRightEdgeX = playerPosition.x + playerHalfWidth
+        let playerLeftEdgeX = playerPosition.x - playerHalfWidth
+        let playerTopY = playerPosition.y - playerHalfHeight
+        let playerBottomY = playerPosition.y + playerHalfHeight
         
-        let frontEdgeCheck: Bool = hitboxRightEdgeX >= obstacleLeftEdgeX
-        let backEdgeCheck: Bool = hitboxLeftEdgeX <= obstacleRightEdgeX
-        let topCheck: Bool = hitboxTopY >= obstacleTopY && hitboxTopY <= obstacleBottomY
-        let bottomCheck: Bool = hitboxBottomY <= obstacleBottomY && hitboxBottomY >= obstacleTopY
+        let obstacleHalfWidth = ObstacleContants.obstacleWidth / 2
         
-        if frontEdgeCheck && backEdgeCheck && (topCheck || bottomCheck) {
+        let obstacleRightEdgeX = obstaclePosition.x + obstacleHalfWidth
+        let obstacleLeftEdgeX = obstaclePosition.x - obstacleHalfWidth
+        let obstacleTopY = obstaclePosition.y
+        let obstacleBottomY = obstaclePosition.y + ObstacleContants.obstacleHeight
+        
+        let frontEdgeCheck = playerRightEdgeX >= obstacleLeftEdgeX
+        let backEdgeCheck = playerLeftEdgeX <= obstacleRightEdgeX
+        let topCheck = playerBottomY >= obstacleTopY && playerTopY <= obstacleBottomY
+        
+        if frontEdgeCheck && backEdgeCheck && topCheck {
             stopTimer()
             gameOver = true
         }
